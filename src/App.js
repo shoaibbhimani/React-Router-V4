@@ -6,12 +6,20 @@ import {
   Route,
   Link,
   NavLink,
-  Prompt
+  Prompt,
+  Switch
 } from 'react-router-dom'
 
 const Home = () => (
   <h1>Home</h1>
 )
+
+
+const NotFound = () => (
+  <h1>NotFound</h1>
+)
+
+
 
 const About = () => (
   <h1>About</h1>
@@ -75,10 +83,13 @@ const App = () => (
     </section>
     
     <section  className="col-sm-8">
+    <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
-       <Route path="/content" component={Content} />
-        <Route path="/form" component={Form} />
+      <Route path="/content" component={Content} />
+      <Route path="/form" component={Form} />
+      <Route  render={() => <h1>Not Founddsadasdasd</h1>} />
+    </Switch>  
     </section>
     
     </div>
