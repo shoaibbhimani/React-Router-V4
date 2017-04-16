@@ -5,7 +5,8 @@ import {
   BrowserRouter as Router,
   Route,
   Link,
-  NavLink
+  NavLink,
+  Prompt
 } from 'react-router-dom'
 
 const Home = () => (
@@ -16,11 +17,33 @@ const About = () => (
   <h1>About</h1>
 )
 
+class Form extends React.Component{
+  constructor(){
+    super();
+    this.state = {
+      isChanged:false
+    }
+  }
+  render(){
+    return (
+      <div>
+       <Prompt when={this.state.isChanged} message="Are you sure you want to leave?" />
+        <input onChange={() => {
+          this.setState({
+            isChanged:true
+          })
+        }} type="text" />
+      </div>
+    )
+  }
+}
+
 const Links = () => (
  <div className="list-group">
     <NavLink className="list-group-item" exact activeClassName="active" to="/" >Home</NavLink>
    <NavLink className="list-group-item" activeClassName="active" to="/about" >About</NavLink>
    <NavLink className="list-group-item" activeClassName="active" to="/content" >Content</NavLink>
+   <NavLink className="list-group-item" activeClassName="active" to="/form" >Form</NavLink>
   </div>
 )
 
@@ -55,6 +78,7 @@ const App = () => (
       <Route exact path="/" component={Home} />
       <Route path="/about" component={About} />
        <Route path="/content" component={Content} />
+        <Route path="/form" component={Form} />
     </section>
     
     </div>
